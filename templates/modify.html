@@ -4,13 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ListAll</title>
+    <title>Document</title>
 </head>
 <body>
-        <div>
-            <h4>Gottipati Sai Sandeep</h4>
-            <h5>Id:4726</h5>
-        </div>
     <table>
         <thead>
           <tr>
@@ -29,5 +25,16 @@
           {% endfor %}
         </tbody>
     </table>
+    <div>
+        <form action="/modify/keyword" method="post">
+            <label for="html">Enter Name to Modify the user Keywords</label><br>
+            <input type="text" name="user_name"><br>
+            <label for="html">Enter comments </label>
+            <input type="text" name="user_comment">
+            <label for="html">Enter salary </label>
+            <input type="text" name="user_salary">
+            <button type="submit">submit</button>
+        </form>
+    </div>
 </body>
 </html>

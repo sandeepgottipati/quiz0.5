@@ -52,10 +52,43 @@ Show and submit code, when each part is complete, raise your hand and then show 
  10. Show a web page and interface (which resides on the cloud provider) with your name as it appears on your ID card 
      as well as your the last 5 digits of your student ID in large font at the top of every web page dispayed (for this quiz)
      On the first page show the picture m.png above your name and ID number.
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <img src="/static/pictures/m.jpg" alt="picture" width="100" height="100">
+    <h5>Name:{{ name }}</h5>
+    <h4>Number:4726</h4>
+    
 
+    return render_template('listall.html',user_list=user_list,income_list=income_list,comment_list=comment_list,zip=zip)
  11. (a) Show the names, income, and comments for each student (entry) on a web page.
+ ## for elven a 
+@app.route('/listall')
+def list_all_names_comments_income():
+    user_list=[]
+    income_list=[]
+    comment_list=[]
+    for i in range(0,len(storagelist)):
+        user_list.append(storagelist[i]['name'])
+        income_list.append(storagelist[i]['income'])
+        comment_list.append(storagelist[i]['comments'])
      (b) Show each of the pictures on a web page, with the associated name(s).
-
+def list_pictures_by_name():
+    pictures_list=[]
+    user_list=[]
+    for i in range(0,len(storagelist)):
+       
+        if(storagelist[i]['picture']!=" " and storagelist[i]['picture']!=''):
+            pictures_list.append("/static/pictures/"+storagelist[i]['picture'])
+            user_list.append(storagelist[i]['name'])
+        
+    return render_template('listpictures.html',pictures_list=pictures_list,user_list=user_list,zip=zip)
  12. Through a web interface (page), allow a user to give an income range (such as 80 to 180)  you may use any input format you wish, 
      and you show the corresponding names, income, class, comments and pictures (or show "no information or picture available") 
      within that range.

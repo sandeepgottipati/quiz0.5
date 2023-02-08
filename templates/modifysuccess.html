@@ -1,0 +1,21 @@
+{% extends "home.html" %}
+{% block modifysuccess %}
+<table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Comments</th>
+        <th>Income</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item1, item2,item3 in zip(user_list, comment_list,income_list) %}
+        <tr>
+          <td>{{ item1 }}</td>
+          <td>{{ item2 }}</td>
+          <td>{{ item3 }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

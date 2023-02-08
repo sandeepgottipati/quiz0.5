@@ -65,5 +65,33 @@ def get_range():
                         picture_list.append("/static/pictures/"+storagelist[i]['picture'])
                         class_list.append(storagelist[i]['class'])
     return render_template("getsalaryrangesuccess.html",user_list=user_list,picture_list=picture_list,comment_list=comment_list,income_list=income_list,class_list=class_list,zip=zip)
+@app.route("/modify",methods=["GET","POST"])
+def modify():
+    if request.method=="GET":
+        return render_template("modify.html")
+    elif request.method=="POST":
+         user_name=request.form.get("user_name")
+         user_keyword_entry=request.form.get("user_comment")
+         user_income=request.form.get("user_income")
+         print(user_name)
+         print(user_keyword_entry)
+         result=False
+         for i in range(0,len(storagelist)):
+            if(storagelist[i]['name']==user_name.lower()):
+                result=True
+                storagelist[i]['comments']=user_keyword_entry
+                storagelist[i]['income']=user_income
+            
+         temp_user_list=[]
+         temp_keywords_list=[]
+         temp_income_list=[]
+         for i in range(0,len(storagelist)):
+            temp_user_list.append(storagelist[i]['name'])
+            temp_keywords_list.append(storagelist[i]['comments'])
+            temp_income_list.append(storagelist[i]['income'])
+    if result:
+        return render_template("modifysuccess.html",user_list=temp_user_list,comment_list=temp_keywords_list,income_list=temp_income_list,zip=zip)
+    else:
+        return "user Not Found"
 if __name__=="__main__":
     app.run(debug=True)

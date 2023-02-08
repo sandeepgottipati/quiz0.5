@@ -1,40 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Comments</th>
-            <th>Income</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item1, item2,item3 in zip(user_list, comment_list,income_list) %}
-            <tr>
-              <td>{{ item1 }}</td>
-              <td>{{ item2 }}</td>
-              <td>{{ item3 }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-    </table>
-    <div>
-        <form action="/modify/keyword" method="post">
-            <label for="html">Enter Name to Modify the user Keywords</label><br>
-            <input type="text" name="user_name"><br>
-            <label for="html">Enter comments </label>
-            <input type="text" name="user_comment">
-            <label for="html">Enter salary </label>
-            <input type="text" name="user_salary">
-            <button type="submit">submit</button>
-        </form>
-    </div>
-</body>
-</html>
+{% extends "home.html" %}
+{% block modify %}
+  <div>
+    <form action="/modify" method="post">
+        <label for="html">Enter Name </label><br>
+        <input type="text" name="user_name"><br>
+        <label for="html">Enter comments </label>
+        <input type="text" name="user_comment">
+        <label for="html">Enter Income </label>
+        <input type="text" name="user_income">
+        <button type="submit">submit</button>
+    </form>
+  </div>
+{% endblock %}

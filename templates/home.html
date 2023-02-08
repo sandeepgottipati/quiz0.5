@@ -7,10 +7,16 @@
     <title>Home</title>
 </head>
 <body>
-    
+    <img src="/static/pictures/m.jpg" alt="picture" width="100" height="100">
     <h5>Name:{{ name }}</h5>
     <h4>Number:4726</h4>
-    <img src="/static/pictures/m.jpg" alt="picture" width="100" height="100">
+    
     {% block listall %} {% endblock %}
     {% block listallpictures %}{% endblock %}
+    {% if form is True %}
+        <form action="/getrange" method="post">
+            <input type="number" min="80" max="180" name="salary">
+            <button type="submit">Enter</button>
+        </form>
+    {% endif %}
 </html>

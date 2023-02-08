@@ -42,31 +42,9 @@ def list_pictures_by_name():
         
     return render_template('listpictures.html',pictures_list=pictures_list,user_list=user_list,zip=zip)
 
-@app.route('/modify',methods=["GET","POST"])
-def modify_income_comments():
+@app.route('/getrange',methods=["GET","POST"])
+def get_range():
     if request.method=="GET":
-        temp_user_list=[]
-        temp_salary_list=[]
-        keyword_list=[]
-        for i in range(0,len(storagelist)):
-            temp_user_list.append(storagelist[i]['name'])
-            temp_salary_list.append(storagelist[i]['income'])
-            keyword_list.append(storagelist[i]['comments'])
-        return render_template('modify.html',user_list=temp_user_list,income_list=temp_salary_list,comment_list=keyword_list,zip=zip)
-    elif request.method=="POST":
-        user_name=request.form.get("user_name")
-        user_salary_entry=request.form.get("user_salary")
-        print(user_name)
-        print(user_salary_entry)
-        for i in range(0,len(storagelist)):
-            if(storagelist[i]['name']==user_name.capitalize() and pd.isna(float(user_salary_entry))==False):
-                storagelist[i]['income']=user_salary_entry
-        temp_user_list=[]
-        temp_salary_list=[]
-        for i in range(0,len(storagelist)):
-            temp_user_list.append(storagelist[i]['name'])
-            temp_salary_list.append(storagelist[i]['income'])
-        return render_template("modifysalarysuccess.html",user_list=temp_user_list,salary_list=temp_salary_list,zip=zip)
-    return "Salary Not Updated!!! Try Again!!"
+        return render_template("home.html",form=True)
 if __name__=="__main__":
     app.run(debug=True)

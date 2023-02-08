@@ -44,7 +44,26 @@ def list_pictures_by_name():
 
 @app.route('/getrange',methods=["GET","POST"])
 def get_range():
+    
     if request.method=="GET":
-        return render_template("home.html",form=True)
+        return render_template("getsalaryrange.html")
+    elif request.method=="POST":
+        user_list=[]
+        income_list=[]
+        class_list=[]
+        comment_list=[]
+        picture_list=[]
+        salary_range=float(request.form.get("salary"))
+        
+        for i in range(0,len(storagelist)):
+            if(storagelist[i]['income']!='' and storagelist[i]['income']!=' '):
+                
+                if(float(storagelist[i]['income'])<=salary_range):
+                        user_list.append(storagelist[i]['name'])
+                        income_list.append(storagelist[i]['income'])
+                        comment_list.append(storagelist[i]['comments'])
+                        picture_list.append("/static/pictures/"+storagelist[i]['picture'])
+                        class_list.append(storagelist[i]['class'])
+    return render_template("getsalaryrangesuccess.html",user_list=user_list,picture_list=picture_list,comment_list=comment_list,income_list=income_list,class_list=class_list,zip=zip)
 if __name__=="__main__":
     app.run(debug=True)

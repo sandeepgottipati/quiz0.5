@@ -1,0 +1,7 @@
+{% extends "home.html" %}
+{% block getSalary %}
+    <form action="/getrange" method="post">
+        <input type="number" min="80" max="400" name="salary">
+        <button type="submit">Enter</button>
+    </form>
+{% endblock %}
